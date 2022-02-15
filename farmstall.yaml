@@ -1,0 +1,32 @@
+openapi: 3.0.3
+info:
+  title: FarmStall API
+  version: v1
+servers:
+- url: https://farmstall.designapis.com/v1
+paths:
+  /reviews:
+    get:
+      description: Fetch a bunch of reviews.
+      parameters:
+      - name: maxRating
+        description: Filter the reviews by the maximum rating
+        in: query
+        schema:
+          type: number
+      responses:
+        200:
+          description: A bunch of reviews
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    rating:
+                      type: integer
+                      minimum: 1
+                      maximum: 5
+                    message:
+                      type: string
